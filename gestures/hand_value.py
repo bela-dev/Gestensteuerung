@@ -1,4 +1,5 @@
 from enum import Enum
+import math
 
 class HandValue:
 
@@ -31,6 +32,17 @@ class HandValue:
             for v in data.landmark:
                 self.content[getHandPointByIndex(i)] = Position(v.x, v.y, v.z);
                 i += 1
+
+    def isOpen(self):
+        maxDist = 0.15
+        finger_tips = [HandPoint.THUMB_TIP, HandPoint.INDEX_FINGER_TIP, HandPoint.MIDDLE_FINGER_TIP, HandPoint.RING_FINGER_TIP, HandPoint.PINKY_TIP]
+        for currentFinger in finger_tips:
+            dx = abs(self.getPosition(currentFinger).x - self.getPosition(HandPoint.WRIST).x)
+            dy = abs(self.getPosition(currentFinger).y - self.getPosition(HandPoint.WRIST).y)
+            dist = math.sqrt(dx*dx+dy*dy)
+            if dist < maxDist:
+                return False
+        return True
 
     def getMidOfHand(self):
         return Position((self.getPosition(HandPoint.WRIST).x + self.getPosition(HandPoint.INDEX_FINGER_MCP).x)/2, (self.getPosition(HandPoint.WRIST).y + self.getPosition(HandPoint.INDEX_FINGER_MCP).y)/2, (self.getPosition(HandPoint.WRIST).z + self.getPosition(HandPoint.INDEX_FINGER_MCP).z)/2)

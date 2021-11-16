@@ -8,6 +8,7 @@ import mediapipe as mp
 
 from gestures.hand_value import HandValue
 
+from gestures.impl.raise_hand import RaiseHandGesture
 from gestures.impl.mute import MuteGesture
 
 '''
@@ -42,7 +43,7 @@ mp_hands = mp.solutions.hands
 '''
 Gestenliste erstellen
 '''
-gestures = [MuteGesture()]
+gestures = [MuteGesture(), RaiseHandGesture()]
 
 '''
  Anwenden von Google Media Pipe zum erkennen von Gesten

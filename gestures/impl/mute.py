@@ -1,5 +1,4 @@
 from gestures.gesture import Gesture
-from abc import abstractmethod
 
 
 class MuteGesture(Gesture):
