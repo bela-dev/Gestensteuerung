@@ -1,6 +1,7 @@
 import math
 
 from gestures.gesture import Gesture
+import utils.shortkey_helper as ShortkeyHelper
 
 class RaiseHandGesture(Gesture):
 
@@ -15,6 +16,7 @@ class RaiseHandGesture(Gesture):
     def checkOneHand(self, positions):
         for v in positions:
             if not v or not v.isOpen():
+                self.onInvalid()
                 return False
 
         mueX = 0
@@ -43,8 +45,10 @@ class RaiseHandGesture(Gesture):
         minMueY = 0.4
 
         if sumX > minSum or sumY > minSum:
+            self.onInvalid()
             return False
         if mueY > minMueY:
+            self.onInvalid()
             return False
         self.onValid()
         return True
@@ -52,5 +56,10 @@ class RaiseHandGesture(Gesture):
 
 
     def onValid(self):
-        self.initLastPositions(20)
+        self.initLastPositions(self.maxLastPositions)
+        ShortkeyHelper.setHandState(True)
         print("hand raised")
+
+    def onInvalid(self):
+        ShortkeyHelper.setHandState(False)
+        print("hand unraised")

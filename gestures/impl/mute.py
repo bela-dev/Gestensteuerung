@@ -27,6 +27,8 @@ class MuteGesture(Gesture):
         self.onValid()
         return True
 
+    def onInvalid(self):
+        self.initLastPositions(15)
 
     def onValid(self):
         self.initLastPositions(15)

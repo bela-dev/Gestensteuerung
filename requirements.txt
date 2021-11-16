@@ -1,2 +1,4 @@
-pyfakewebcam~=0.1.0
+autoit~=0.2.3
+pyvirtualcam~=0.8.0
+mediapipe~=0.8.9
 numpy~=1.21.4

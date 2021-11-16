@@ -10,6 +10,10 @@ class Gesture:
     def onValid(self):
         pass
 
+    @abstractmethod
+    def onInvalid(self):
+        pass
+
     def addLastPosition(self, left, right):
         if len(self.lastLeftHandPositions) >= self.maxLastPositions:
             self.lastLeftHandPositions.pop(0)
