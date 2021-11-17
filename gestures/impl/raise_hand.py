@@ -57,9 +57,9 @@ class RaiseHandGesture(Gesture):
 
     def onValid(self):
         self.initLastPositions(self.maxLastPositions)
-        ShortkeyHelper.setMuteState(True)
+        ShortkeyHelper.setHandRaisedState(True)
         print("hand raised")
 
     def onInvalid(self):
-        ShortkeyHelper.setMuteState(False)
+        ShortkeyHelper.setHandRaisedState(False)
         print("hand unraised")

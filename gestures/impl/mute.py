@@ -1,5 +1,5 @@
 from gestures.gesture import Gesture
-
+import utils.shortkey_helper as ShortkeyHelper
 
 class MuteGesture(Gesture):
 
@@ -16,7 +16,7 @@ class MuteGesture(Gesture):
 
         # check if movement goes from left to right
         for i in range(1, 7):
-            if not self.getRightPosition(i).getMidOfHand().x >= self.getRightPosition(i-1).getMidOfHand().x:
+            if not self.getRightPosition(i).getMidOfHand().x >= self.getRightPosition(i-1).getMidOfHand().x-0.05:
                 return False
 
         # check if movement goes wide enough
@@ -28,8 +28,9 @@ class MuteGesture(Gesture):
         return True
 
     def onInvalid(self):
-        self.initLastPositions(15)
+        return
 
     def onValid(self):
+        ShortkeyHelper.toggleMute()
         self.initLastPositions(15)
-        print("mute")
+        print("toggle mute")
