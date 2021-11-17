@@ -10,6 +10,7 @@ from gestures.hand_value import HandValue
 
 from gestures.impl.raise_hand import RaiseHandGesture
 from gestures.impl.mute import MuteGesture
+from gestures.impl.thumb_up import ThumbUpGesture
 
 '''
  Virtuelle Kamera einrichten

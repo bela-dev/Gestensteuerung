@@ -3,7 +3,7 @@ import math
 from gestures.gesture import Gesture
 import utils.shortkey_helper as ShortkeyHelper
 
-class RaiseHandGesture(Gesture):
+class ThumbUpGesture(Gesture):
 
     def __init__(self):
         self.initLastPositions(20)
@@ -19,30 +19,7 @@ class RaiseHandGesture(Gesture):
                 self.onInvalid()
                 return False
 
-        mueX = 0
-        for i in positions:
-            mueX += i.getMidOfHand().x
-        mueX = mueX / len(positions)
 
-        sumX = 0
-        for i in positions:
-            sumX += (i.getMidOfHand().x - mueX) ** 2
-        sumX = sumX / len(positions)
-        sumX = math.sqrt(sumX)
-
-        mueY = 0
-        for i in positions:
-            mueY += i.getMidOfHand().y
-        mueY = mueY / len(positions)
-
-        sumY = 0
-        for i in positions:
-            sumY += (i.getMidOfHand().y - mueY) ** 2
-        sumY = sumY / len(positions)
-        sumY = math.sqrt(sumY)
-
-        minSum = 0.001
-        minMueY = 0.4
 
         if sumX > minSum or sumY > minSum:
             self.onInvalid()

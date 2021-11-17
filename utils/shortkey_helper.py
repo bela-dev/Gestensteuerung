@@ -1,19 +1,27 @@
 import keyboard
 
 muted = False
+handRaised = False
 
 def openDesktop():
     keyboard.send("windows+d")
 
-def toggleMute():
-    keyboard.send("alt+a")
-
-def setHandState(value: bool):
+def setMuteState(value: bool):
     global muted
     if muted != value:
-        toggleHand()
+        toggleMute()
 
-def toggleHand():
+def toggleMute():
     global muted
-    keyboard.send("alt+y")
+    keyboard.send("alt+a")
     muted = not muted
+
+def setHandRaisedState(value: bool):
+    global handRaised
+    if handRaised != value:
+        toggleHandRaised()
+
+def toggleHandRaised():
+    global handRaised
+    keyboard.send("alt+y")
+    handRaised = not handRaised
