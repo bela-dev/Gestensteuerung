@@ -44,7 +44,7 @@ mp_hands = mp.solutions.hands
 '''
 Gestenliste erstellen
 '''
-gestures = [MuteGesture(), RaiseHandGesture()]
+gestures = [MuteGesture(), RaiseHandGesture(), ThumbUpGesture()]
 
 '''
  Anwenden von Google Media Pipe zum erkennen von Gesten
