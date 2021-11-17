@@ -16,7 +16,6 @@ class RaiseHandGesture(Gesture):
     def checkOneHand(self, positions):
         for v in positions:
             if not v or not v.isOpen():
-                self.onInvalid()
                 return False
 
         mueX = 0
@@ -41,7 +40,7 @@ class RaiseHandGesture(Gesture):
         sumY = sumY / len(positions)
         sumY = math.sqrt(sumY)
 
-        minSum = 0.001
+        minSum = 0.01
         minMueY = 0.4
 
         if sumX > minSum or sumY > minSum:
@@ -62,4 +61,3 @@ class RaiseHandGesture(Gesture):
 
     def onInvalid(self):
         ShortkeyHelper.setHandRaisedState(False)
-        print("hand unraised")
