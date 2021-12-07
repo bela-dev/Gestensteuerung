@@ -51,8 +51,8 @@ class ThumbUpGesture(Gesture):
 
     def onValid(self):
         self.initLastPositions(self.maxLastPositions)
-        ShortkeyHelper.setMuteState(True)
+        ShortkeyHelper.setThumbUpState(True)
         print("thumb up")
 
     def onInvalid(self):
-        ShortkeyHelper.setMuteState(False)
+        ShortkeyHelper.setThumbUpState(False)

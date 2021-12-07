@@ -20,8 +20,8 @@ if not vc.isOpened():
     raise RuntimeError('Could not open video source')
 
 # Einstellungen der Virtuellen Kamera setzen
-pref_width = 1080
-pref_height = 720
+pref_width = 1920
+pref_height = 1080
 pref_fps = 25
 vc.set(cv2.CAP_PROP_FRAME_WIDTH, pref_width)
 vc.set(cv2.CAP_PROP_FRAME_HEIGHT, pref_height)

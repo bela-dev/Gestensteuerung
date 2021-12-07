@@ -1,8 +1,12 @@
 import keyboard
+import pyautogui
 
 muted = False
 handRaised = False
 thumbUp = False
+heart = False
+pyautogui.PAUSE = 1
+pyautogui.FAILSAFE = False
 
 def openDesktop():
     keyboard.send("windows+d")
@@ -34,5 +38,17 @@ def setThumbUpState(value: bool):
 
 def toggleThumbUp():
     global thumbUp
-    # keyboard.send("alt+y") TODO
+    pyautogui.click(x=1280, y=1000)
+    pyautogui.click(x=1175, y=890)
     thumbUp = not thumbUp
+
+def setHeartState(value: bool):
+    global heart
+    if heart != value:
+        toggleHeart()
+
+def toggleHeart():
+    global heart
+    pyautogui.click(x=1280, y=1000)
+    pyautogui.click(x=1330, y=880)
+    heart = not heart
