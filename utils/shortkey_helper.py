@@ -5,6 +5,7 @@ muted = False
 handRaised = False
 thumbUp = False
 heart = False
+okHand = False
 pyautogui.PAUSE = 1
 pyautogui.FAILSAFE = False
 
@@ -52,3 +53,17 @@ def toggleHeart():
     pyautogui.click(x=1280, y=1000)
     pyautogui.click(x=1330, y=880)
     heart = not heart
+
+def setOkHandState(value: bool):
+    global okHand
+    if okHand != value:
+        toggleOkHand()
+
+def toggleOkHand():
+    global okHand
+    pyautogui.click(x=1280, y=1000)
+    pyautogui.click(x=1425, y=880)
+    pyautogui.press("o")
+    pyautogui.press("k")
+    pyautogui.click(x=1123,y=671)
+    okHand = not okHand

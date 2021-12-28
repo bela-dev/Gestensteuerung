@@ -12,6 +12,7 @@ from gestures.impl.raise_hand import RaiseHandGesture
 from gestures.impl.mute import MuteGesture
 from gestures.impl.thumb_up import ThumbUpGesture
 from gestures.impl.heart import HeartGesture
+from gestures.impl.ok_hand import OkHandGesture
 
 '''
  Virtuelle Kamera einrichten
@@ -45,7 +46,7 @@ mp_hands = mp.solutions.hands
 '''
 Gestenliste erstellen
 '''
-gestures = [MuteGesture(), RaiseHandGesture(), ThumbUpGesture(), HeartGesture()]
+gestures = [MuteGesture(), RaiseHandGesture(), ThumbUpGesture(), HeartGesture(), OkHandGesture()]
 
 '''
  Anwenden von Google Media Pipe zum erkennen von Gesten
