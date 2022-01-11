@@ -8,11 +8,14 @@ import mediapipe as mp
 
 from gestures.hand_value import HandValue
 
+import utils.exec_helper as ExecHelper
+
 from gestures.impl.raise_hand import RaiseHandGesture
 from gestures.impl.mute import MuteGesture
 from gestures.impl.thumb_up import ThumbUpGesture
 from gestures.impl.heart import HeartGesture
 from gestures.impl.ok_hand import OkHandGesture
+from gestures.impl.volume_change import VolumeChangeGesture
 
 '''
  Virtuelle Kamera einrichten

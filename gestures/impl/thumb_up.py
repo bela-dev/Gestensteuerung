@@ -1,7 +1,7 @@
 import math
 
 from gestures.gesture import Gesture
-import utils.shortkey_helper as ShortkeyHelper
+import utils.zoom_helper as ShortkeyHelper
 from gestures.hand_value import HandPoint, getHandPointByIndex
 
 

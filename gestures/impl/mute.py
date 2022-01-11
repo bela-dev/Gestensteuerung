@@ -1,5 +1,5 @@
 from gestures.gesture import Gesture
-import utils.shortkey_helper as ShortkeyHelper
+import utils.zoom_helper as ShortkeyHelper
 
 class MuteGesture(Gesture):
 
@@ -32,5 +32,5 @@ class MuteGesture(Gesture):
 
     def onValid(self):
         ShortkeyHelper.toggleMute()
-        self.initLastPositions(15)
+        self.initLastPositions(self.maxLastPositions)
         print("toggle mute")
