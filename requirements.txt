@@ -1,5 +1,5 @@
 comtypes~=1.1.10
-pycaw~=20181226
+pycaw
 keyboard~=0.13.5
 PyAutoGUI~=0.9.53
 opencv-python~=4.5.3.56
@@ -7,3 +7,4 @@ pyvirtualcam~=0.8.0
 mediapipe~=0.8.9
 enum34~=1.1.10
 numpy~=1.21.4
+pynput
