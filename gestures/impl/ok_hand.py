@@ -44,6 +44,11 @@ class OkHandGesture(Gesture):
                 self.onInvalid()
                 return False
 
+        print(v.getPosition(getHandPointByIndex(2)).y - v.getPosition(getHandPointByIndex(6)).y)
+        if v.getPosition(getHandPointByIndex(2)).y + 0.165 < v.getPosition(getHandPointByIndex(6)).y:
+            self.onInvalid()
+            return False
+
         self.onValid()
         return True
 

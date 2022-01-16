@@ -9,6 +9,8 @@ okHand = False
 pyautogui.PAUSE = 1
 pyautogui.FAILSAFE = False
 
+autoClickRunning = False
+
 def openDesktop():
     keyboard.send("windows+d")
 
@@ -39,9 +41,13 @@ def setThumbUpState(value: bool):
 
 def toggleThumbUp():
     global thumbUp
-    pyautogui.click(x=1280, y=1000)
-    pyautogui.click(x=1175, y=890)
-    thumbUp = not thumbUp
+    global autoClickRunning
+    if not autoClickRunning:
+        autoClickRunning = True
+        pyautogui.click(x=1280, y=1000)
+        pyautogui.click(x=1175, y=890)
+        thumbUp = not thumbUp
+        autoClickRunning = False
 
 def setHeartState(value: bool):
     global heart
@@ -50,9 +56,13 @@ def setHeartState(value: bool):
 
 def toggleHeart():
     global heart
-    pyautogui.click(x=1280, y=1000)
-    pyautogui.click(x=1330, y=880)
-    heart = not heart
+    global autoClickRunning
+    if not autoClickRunning:
+        autoClickRunning = True
+        pyautogui.click(x=1280, y=1000)
+        pyautogui.click(x=1330, y=880)
+        heart = not heart
+        autoClickRunning = False
 
 def setOkHandState(value: bool):
     global okHand
@@ -61,9 +71,13 @@ def setOkHandState(value: bool):
 
 def toggleOkHand():
     global okHand
-    pyautogui.click(x=1280, y=1000)
-    pyautogui.click(x=1425, y=880)
-    pyautogui.press("o")
-    pyautogui.press("k")
-    pyautogui.click(x=1123,y=671)
-    okHand = not okHand
+    global autoClickRunning
+    if not autoClickRunning:
+        autoClickRunning = True
+        pyautogui.click(x=1280, y=1000)
+        pyautogui.click(x=1425, y=880)
+        pyautogui.press("o")
+        pyautogui.press("k")
+        pyautogui.click(x=1140,y=671)
+        okHand = not okHand
+        autoClickRunning = False

@@ -16,6 +16,7 @@ class MuteGesture(Gesture):
 
         # check if movement goes from left to right
         for i in range(1, 7):
+            #print(self.getRightPosition(i).getMidOfHand().x, ' ', self.getRightPosition(i-1).getMidOfHand().x)
             if not self.getRightPosition(i).getMidOfHand().x >= self.getRightPosition(i-1).getMidOfHand().x-0.05:
                 return False
 

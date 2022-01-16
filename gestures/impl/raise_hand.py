@@ -2,11 +2,13 @@ import math
 
 from gestures.gesture import Gesture
 import utils.zoom_helper as ShortkeyHelper
+from gestures.hand_value import getHandPointByIndex
+
 
 class RaiseHandGesture(Gesture):
 
     def __init__(self):
-        self.initLastPositions(20)
+        self.initLastPositions(30)
 
     def check(self, left, right):
         self.addLastPosition(left, right)
@@ -43,10 +45,7 @@ class RaiseHandGesture(Gesture):
         minSum = 0.01
         minMueY = 0.4
 
-        if sumX > minSum or sumY > minSum:
-            self.onInvalid()
-            return False
-        if mueY > minMueY:
+        if sumX > minSum or sumY > minSum or mueY > minMueY or positions[0].getPosition(getHandPointByIndex(12)).y+0.1 > positions[0].getPosition(getHandPointByIndex(0)).y:
             self.onInvalid()
             return False
         self.onValid()
