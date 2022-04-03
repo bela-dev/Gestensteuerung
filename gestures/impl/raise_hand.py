@@ -8,7 +8,7 @@ from gestures.hand_value import getHandPointByIndex
 class RaiseHandGesture(Gesture):
 
     def __init__(self):
-        self.initLastPositions(30)
+        self.initLastPositions(15)
 
     def check(self, left, right):
         self.addLastPosition(left, right)

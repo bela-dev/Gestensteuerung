@@ -49,7 +49,9 @@ mp_hands = mp.solutions.hands
 '''
 Gestenliste erstellen
 '''
-gestures = [MuteGesture(), RaiseHandGesture(), ThumbUpGesture(), HeartGesture(), OkHandGesture(), VolumeChangeGesture()]
+gestures = [MuteGesture(), RaiseHandGesture(), ThumbUpGesture(), HeartGesture(), OkHandGesture()]
+
+activeGesture = None
 
 '''
  Anwenden von Google Media Pipe zum erkennen von Gesten
@@ -89,8 +91,22 @@ with pyvirtualcam.Camera(width, height, fps, fmt=PixelFormat.BGR) as cam:
                         left = HandValue(True, hand)
 
                 # Check hands
-                for g in gestures:
-                    g.check(left, right)
+                allFalse = True
+                if activeGesture is None:
+                    for g in gestures:
+                        if g.check(left, right):
+                            allFalse = False
+                            print(g)
+                            activeGesture = g
+                else:
+                    if not activeGesture.check(left, right):
+                        activeGesture = None
+                    else:
+                        allFalse = False
+                if allFalse:
+                    activeGesture = None
+
+
 
             # Bild ausgeben
             if results.multi_hand_landmarks:
@@ -104,4 +120,9 @@ with pyvirtualcam.Camera(width, height, fps, fmt=PixelFormat.BGR) as cam:
 
             if cv2.waitKey(10) & 0xFF == ord('q'):
                 break
+
+
+
+def getActiveGesture():
+    return activeGesture
 

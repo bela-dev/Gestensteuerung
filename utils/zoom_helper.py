@@ -79,6 +79,8 @@ def setOkHandState(value: bool):
     if okHand != value:
         toggleOkHand()
 
+
+
 def toggleOkHand():
     global okHand
     global autoClickRunning

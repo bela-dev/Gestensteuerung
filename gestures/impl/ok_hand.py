@@ -9,6 +9,7 @@ class OkHandGesture(Gesture):
 
     def __init__(self):
         self.initLastPositions(20)
+        self.alreadyExec = False
 
     def check(self, left, right):
         self.addLastPosition(left, right)
@@ -63,9 +64,12 @@ class OkHandGesture(Gesture):
         return True
 
     def onValid(self):
-        self.initLastPositions(self.maxLastPositions)
-        ShortkeyHelper.setOkHandState(True)
-        print("ok hand")
+        if not self.alreadyExec:
+            self.alreadyExec = True
+            self.initLastPositions(self.maxLastPositions)
+            ShortkeyHelper.setOkHandState(True)
+            print("ok hand")
 
     def onInvalid(self):
+        self.alreadyExec = False
         ShortkeyHelper.setOkHandState(False)
