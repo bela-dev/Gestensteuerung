@@ -1,6 +1,8 @@
 import keyboard
 import pyautogui
 
+QAware = False
+
 muted = False
 handRaised = False
 thumbUp = False
@@ -44,8 +46,12 @@ def toggleThumbUp():
     global autoClickRunning
     if not autoClickRunning:
         autoClickRunning = True
-        pyautogui.click(x=1280, y=1000)
-        pyautogui.click(x=1175, y=890)
+        if QAware:
+            pyautogui.click(x=1280, y=1000)
+            pyautogui.click(x=1170, y=830)
+        else:
+            pyautogui.click(x=1280, y=1000)
+            pyautogui.click(x=1175, y=890)
         thumbUp = not thumbUp
         autoClickRunning = False
 
@@ -59,8 +65,12 @@ def toggleHeart():
     global autoClickRunning
     if not autoClickRunning:
         autoClickRunning = True
-        pyautogui.click(x=1280, y=1000)
-        pyautogui.click(x=1330, y=880)
+        if QAware:
+            pyautogui.click(x=1280, y=1000)
+            pyautogui.click(x=1325, y=830)
+        else:
+            pyautogui.click(x=1280, y=1000)
+            pyautogui.click(x=1330, y=880)
         heart = not heart
         autoClickRunning = False
 
@@ -74,10 +84,17 @@ def toggleOkHand():
     global autoClickRunning
     if not autoClickRunning:
         autoClickRunning = True
-        pyautogui.click(x=1280, y=1000)
-        pyautogui.click(x=1425, y=880)
-        pyautogui.press("o")
-        pyautogui.press("k")
-        pyautogui.click(x=1140,y=671)
+        if QAware:
+            pyautogui.click(x=1280, y=1000)
+            pyautogui.click(x=1420, y=830)
+            pyautogui.press("o")
+            pyautogui.press("k")
+            pyautogui.click(x=1110,y=680)
+        else:
+            pyautogui.click(x=1280, y=1000)
+            pyautogui.click(x=1425, y=880)
+            pyautogui.press("o")
+            pyautogui.press("k")
+            pyautogui.click(x=1140, y=671)
         okHand = not okHand
         autoClickRunning = False
