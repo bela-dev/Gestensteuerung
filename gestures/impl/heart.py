@@ -10,9 +10,9 @@ class HeartGesture(Gesture):
     def __init__(self):
         self.initLastPositions(20)
 
-    def check(self, left, right):
+    def check(self, left, right, doValid):
         self.addLastPosition(left, right)
-        return self.checkBothHands(self.lastLeftHandPositions,self.lastRightHandPositions)
+        return self.checkBothHands(self.lastLeftHandPositions,self.lastRightHandPositions, doValid)
 
     def isHeart(self, lef, rig):
         # Daumen gleiche Position
@@ -54,15 +54,15 @@ class HeartGesture(Gesture):
 
         return True
 
-    def checkBothHands(self, positions_left, positions_right):
+    def checkBothHands(self, positions_left, positions_right, doValid):
         for i in range(min(len(positions_left),len(positions_right))):
             if not positions_left[i] or not positions_right[i]:
                 return False
             if not self.isHeart(positions_left[i], positions_right[i]):
                 self.onInvalid()
                 return False
-
-        self.onValid()
+        if doValid:
+            self.onValid()
         return True
 
     def onValid(self):

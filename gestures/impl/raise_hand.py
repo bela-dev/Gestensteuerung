@@ -10,12 +10,12 @@ class RaiseHandGesture(Gesture):
     def __init__(self):
         self.initLastPositions(15)
 
-    def check(self, left, right):
+    def check(self, left, right, doValid):
         self.addLastPosition(left, right)
-        return self.checkOneHand(self.lastRightHandPositions) or self.checkOneHand(self.lastLeftHandPositions)
+        return self.checkOneHand(self.lastRightHandPositions, doValid) or self.checkOneHand(self.lastLeftHandPositions, doValid)
 
 
-    def checkOneHand(self, positions):
+    def checkOneHand(self, positions, doValid):
         for v in positions:
             if not v or not v.isOpen():
                 return False
@@ -48,7 +48,8 @@ class RaiseHandGesture(Gesture):
         if sumX > minSum or sumY > minSum or mueY > minMueY or positions[0].getPosition(getHandPointByIndex(12)).y+0.1 > positions[0].getPosition(getHandPointByIndex(0)).y:
             self.onInvalid()
             return False
-        self.onValid()
+        if doValid:
+            self.onValid()
         return True
 
 

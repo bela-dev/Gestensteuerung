@@ -13,7 +13,7 @@ def increaseVolumeBy2():
     keyboard.release(Key.media_volume_up)
 
 def increaseVolume(val):
-    for i in range(math.ceil(val/2.0)):
+    for i in range(math.ceil(val / 2.0)):
         increaseVolumeBy2()
 
 

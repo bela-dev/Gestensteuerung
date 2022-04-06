@@ -6,7 +6,7 @@ class MuteGesture(Gesture):
     def __init__(self):
         self.initLastPositions(15)
 
-    def check(self, left, right):
+    def check(self, left, right, doValid):
         # Add new position to recent position list
         self.addLastPosition(left, right)
 
@@ -25,7 +25,8 @@ class MuteGesture(Gesture):
          #   return False
 
         # execute valid script
-        self.onValid()
+        if doValid:
+            self.onValid()
         return True
 
     def onInvalid(self):

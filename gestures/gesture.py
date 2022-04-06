@@ -3,7 +3,7 @@ from abc import abstractmethod
 class Gesture:
 
     @abstractmethod
-    def check(self, left, right):
+    def check(self, left, right, doValid):
         pass
 
     @abstractmethod

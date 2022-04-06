@@ -9,11 +9,11 @@ class OkHandGesture(Gesture):
 
     def __init__(self):
         self.initLastPositions(20)
-        self.alreadyExec = False
+        #self.alreadyExec = False
 
-    def check(self, left, right):
+    def check(self, left, right, doValid):
         self.addLastPosition(left, right)
-        return self.checkOneHand(self.lastRightHandPositions) or self.checkOneHand(self.lastLeftHandPositions)
+        return self.checkOneHand(self.lastRightHandPositions, doValid) or self.checkOneHand(self.lastLeftHandPositions, doValid)
 
     def is_equal(self, x1, y1, x2, y2):
         TRESHOLD = 0.05
@@ -32,7 +32,6 @@ class OkHandGesture(Gesture):
         b = v.getPosition(HandPoint.INDEX_FINGER_TIP)
 
         if not self.is_equal(a.x, a.y, b.x, b.y):
-            self.onInvalid()
             return False
 
         # 6 unter 12, 16, 20
@@ -42,34 +41,28 @@ class OkHandGesture(Gesture):
 
         for yfinger in other:
             if yfinger > ysix:
-                self.onInvalid()
                 return False
 
         if v.getPosition(getHandPointByIndex(2)).y - 0.165 < v.getPosition(getHandPointByIndex(6)).y:
-            self.onInvalid()
             return False
 
-        self.onValid()
         return True
 
-    def checkOneHand(self, positions):
+    def checkOneHand(self, positions, doValid):
         for v in positions:
             if not v:
                 return False
             if not self.isOkHand(v):
                 self.onInvalid()
                 return False
-
-        self.onValid()
+        if doValid:
+            self.onValid()
         return True
 
     def onValid(self):
-        if not self.alreadyExec:
-            self.alreadyExec = True
-            self.initLastPositions(self.maxLastPositions)
-            ShortkeyHelper.setOkHandState(True)
-            print("ok hand")
+        self.initLastPositions(self.maxLastPositions)
+        ShortkeyHelper.setOkHandState(True)
+        print("ok hand")
 
     def onInvalid(self):
-        self.alreadyExec = False
         ShortkeyHelper.setOkHandState(False)

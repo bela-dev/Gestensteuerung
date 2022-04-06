@@ -10,9 +10,9 @@ class ThumbUpGesture(Gesture):
     def __init__(self):
         self.initLastPositions(20)
 
-    def check(self, left, right):
+    def check(self, left, right, doValid):
         self.addLastPosition(left, right)
-        return self.checkOneHand(self.lastRightHandPositions) or self.checkOneHand(self.lastLeftHandPositions)
+        return self.checkOneHand(self.lastRightHandPositions, doValid) or self.checkOneHand(self.lastLeftHandPositions, doValid)
 
     def isThumbUp(self, v):
         thumb_y = v.getPosition(HandPoint.THUMB_TIP).y
@@ -32,21 +32,21 @@ class ThumbUpGesture(Gesture):
         min_diff = 0.25
 
         if thumb_y+min_diff > avg_y or mx_x-mn_x > max_range:
-            self.onInvalid()
+            #self.onInvalid()
             return False
 
-        self.onValid()
+        #self.onValid()
         return True
 
-    def checkOneHand(self, positions):
+    def checkOneHand(self, positions, doValid):
         for v in positions:
             if not v:
                 return False
             if not self.isThumbUp(v):
                 self.onInvalid()
                 return False
-
-        self.onValid()
+        if doValid:
+            self.onValid()
         return True
 
     def onValid(self):
