@@ -92,11 +92,11 @@ with pyvirtualcam.Camera(width, height, fps, fmt=PixelFormat.BGR) as cam:
 
                 # Check hands
                 allFalse = True
-                lastTime = True
                 if activeGesture is None:
                     for g in gestures:
                         if g.check(left, right, True):
                             allFalse = False
+                            lastTime = True
                             activeGesture = g
                 else:
                     if not activeGesture.check(left, right, False):
@@ -107,6 +107,7 @@ with pyvirtualcam.Camera(width, height, fps, fmt=PixelFormat.BGR) as cam:
                             lastTime = True
                     else:
                         allFalse = False
+                        lastTime = True
                 if allFalse:
                     activeGesture = None
 
