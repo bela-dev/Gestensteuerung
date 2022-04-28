@@ -49,7 +49,7 @@ mp_hands = mp.solutions.hands
 '''
 Gestenliste erstellen
 '''
-gestures = [MuteGesture(), RaiseHandGesture(), ThumbUpGesture(), HeartGesture(), OkHandGesture()]
+gestures = [MuteGesture(), RaiseHandGesture(), ThumbUpGesture(), HeartGesture(), OkHandGesture(), VolumeChangeGesture()]
 
 activeGesture = None
 

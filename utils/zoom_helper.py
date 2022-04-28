@@ -2,6 +2,8 @@ import keyboard
 import pyautogui
 
 QAware = False
+Vollbild = True
+time = 0
 
 muted = False
 handRaised = False
@@ -12,6 +14,17 @@ pyautogui.PAUSE = 1
 pyautogui.FAILSAFE = False
 
 autoClickRunning = False
+
+def click(x, y):
+    global time
+    ny = y
+    nx = x
+    if Vollbild:
+        ny += 50
+    if time == 1 and not QAware:
+        ny += 50
+    pyautogui.click(nx, ny)
+    time += 1
 
 def openDesktop():
     keyboard.send("windows+d")
@@ -42,16 +55,14 @@ def setThumbUpState(value: bool):
         toggleThumbUp()
 
 def toggleThumbUp():
+    global time
     global thumbUp
     global autoClickRunning
     if not autoClickRunning:
+        time = 0
         autoClickRunning = True
-        if QAware:
-            pyautogui.click(x=1280, y=1000)
-            pyautogui.click(x=1170, y=830)
-        else:
-            pyautogui.click(x=1280, y=1000)
-            pyautogui.click(x=1175, y=890)
+        click(1230, 1000)
+        click(1120, 830)
         thumbUp = not thumbUp
         autoClickRunning = False
 
@@ -61,16 +72,14 @@ def setHeartState(value: bool):
         toggleHeart()
 
 def toggleHeart():
+    global time
     global heart
     global autoClickRunning
     if not autoClickRunning:
+        time = 0
         autoClickRunning = True
-        if QAware:
-            pyautogui.click(x=1280, y=1000)
-            pyautogui.click(x=1325, y=830)
-        else:
-            pyautogui.click(x=1280, y=1000)
-            pyautogui.click(x=1330, y=880)
+        click(1230, 1000)
+        click(1275, 830)
         heart = not heart
         autoClickRunning = False
 
@@ -79,24 +88,17 @@ def setOkHandState(value: bool):
     if okHand != value:
         toggleOkHand()
 
-
-
 def toggleOkHand():
+    global time
     global okHand
     global autoClickRunning
     if not autoClickRunning:
+        time = 0
         autoClickRunning = True
-        if QAware:
-            pyautogui.click(x=1280, y=1000)
-            pyautogui.click(x=1420, y=830)
-            pyautogui.press("o")
-            pyautogui.press("k")
-            pyautogui.click(x=1110,y=680)
-        else:
-            pyautogui.click(x=1280, y=1000)
-            pyautogui.click(x=1425, y=880)
-            pyautogui.press("o")
-            pyautogui.press("k")
-            pyautogui.click(x=1140, y=671)
+        click(1230, 1000)
+        click(1375, 830)
+        pyautogui.press("o")
+        pyautogui.press("k")
+        click(1075, 670)
         okHand = not okHand
         autoClickRunning = False

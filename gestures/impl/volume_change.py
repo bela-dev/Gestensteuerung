@@ -12,7 +12,7 @@ class VolumeChangeGesture(Gesture):
     def __init__(self):
         self.initLastPositions(20)
 
-    def check(self, left, right):
+    def check(self, left, right, doValid):
         self.addLastPosition(left, right)
         return (self.lenLeftPosition() >= 2 and self.checkOneHand(self.lastLeftHandPositions)) \
                or (self.lenRightPosition() >= 2 and self.checkOneHand(self.lastRightHandPositions))
