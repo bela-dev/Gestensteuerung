@@ -6,15 +6,18 @@ import pyvirtualcam
 from pyvirtualcam import PixelFormat
 import mediapipe as mp
 
+import utils.screen_helper as ScreenHelper
+
 from gestures.hand_value import HandValue
 
-import utils.exec_helper as ExecHelper
+import utils.zoom_helper as ZoomHelper
 
 from gestures.impl.raise_hand import RaiseHandGesture
 from gestures.impl.mute import MuteGesture
 from gestures.impl.thumb_up import ThumbUpGesture
 from gestures.impl.heart import HeartGesture
 from gestures.impl.ok_hand import OkHandGesture
+from gestures.impl.alttab import AltTabGesture
 from gestures.impl.volume_change import VolumeChangeGesture
 
 '''
@@ -46,12 +49,17 @@ Google Media Pipe einrichten
 mp_drawing = mp.solutions.drawing_utils
 mp_hands = mp.solutions.hands
 
+#test
+
 '''
 Gestenliste erstellen
 '''
-gestures = [MuteGesture(), RaiseHandGesture(), ThumbUpGesture(), HeartGesture(), OkHandGesture(), VolumeChangeGesture()]
+gestures = [MuteGesture(), RaiseHandGesture(), AltTabGesture(), ThumbUpGesture(), HeartGesture(), OkHandGesture()]
 
 activeGesture = None
+
+ScreenHelper.refresh()
+ScreenHelper.relClickFullHD(300, 20, ScreenHelper.getEntryByTitleContains("pythonProject"))
 
 '''
  Anwenden von Google Media Pipe zum erkennen von Gesten
@@ -63,6 +71,8 @@ with pyvirtualcam.Camera(width, height, fps, fmt=PixelFormat.BGR) as cam:
         print("Successfully created virtual camera source(" + cam.device + ") with: " + str(width) + ":" + str(height) + " and " + str(fps) + "fps")
 
         while True:
+
+            ScreenHelper.refresh()
 
             # Momentanes Bild empfangen
             ret, frame = vc.read()

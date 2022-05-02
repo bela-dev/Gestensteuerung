@@ -1,4 +1,4 @@
-import math
+import pyautogui
 
 from gestures.gesture import Gesture
 import utils.zoom_helper as ShortkeyHelper

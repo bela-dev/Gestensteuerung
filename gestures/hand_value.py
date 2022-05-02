@@ -44,12 +44,28 @@ class HandValue:
                 return False
         return True
 
+    def get2DDistance(self, point1, point2):
+        dx = abs(self.getPosition(point1).x - self.getPosition(point2).x)
+        dy = abs(self.getPosition(point1).y - self.getPosition(point2).y)
+        return math.sqrt(dx*dx+dy*dy)
+
     def getMidOfHand(self):
         return Position((self.getPosition(HandPoint.WRIST).x + self.getPosition(HandPoint.INDEX_FINGER_MCP).x)/2, (self.getPosition(HandPoint.WRIST).y + self.getPosition(HandPoint.INDEX_FINGER_MCP).y)/2, (self.getPosition(HandPoint.WRIST).z + self.getPosition(HandPoint.INDEX_FINGER_MCP).z)/2)
 
     def getPosition(self, handPoint):
         return self.content.get(handPoint)
 
+    def getAVGDistance(self):
+        sum = 0
+        for v1 in HandPoint:
+            for v2 in HandPoint:
+                sum += abs(self.getPosition(v1).x - self.getPosition(v2).x)
+                sum += abs(self.getPosition(v1).y - self.getPosition(v2).y)
+        return sum / (21*21)
+
+class Hand(Enum):
+    LEFT = 0
+    RIGHT = 1
 
 class HandPoint(Enum):
     WRIST = 0
