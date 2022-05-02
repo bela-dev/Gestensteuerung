@@ -3,13 +3,18 @@ import pyautogui
 
 screenEntries = []
 
+'''
+ Die Informationen über alle geöffneten Fenster werden neu geladen
+ und in dem Feld screenEntries gespeichert
+'''
 def refresh():
-    screenEntries = []
+    screenEntries.clear()
     win32gui.EnumWindows(insertEntry, None)
-    for item in screenEntries:
-        print(item.getTitle())
 
-
+'''
+ Die nötigen Informationen aus einer Fenster instance werden gefiltert
+ und als Objekt der Klasse ScreenEntry in dem Feld screenEntries gespeichert
+'''
 def insertEntry(hwnd, extra):
     # get window title
     txt = win32gui.GetWindowText(hwnd)
@@ -23,6 +28,10 @@ def insertEntry(hwnd, extra):
         screenEntries.append(ScreenEntry(txt, x, y, w, h))
 
 
+'''
+ Gibt einen Wahrheitswert zurück, je nachdem, ob ein Eintrag
+ mit dem als Parameter übergebenen Titel existiert
+'''
 def containsEntry(title):
     for item in screenEntries:
         if item.getTitle() == title:
@@ -30,6 +39,10 @@ def containsEntry(title):
     return False
 
 
+'''
+ Gibt das gespeicherte Objekt der Klasse ScreenEntry, falls vorhanden,
+ identifiziert über den Titel zurück
+'''
 def getEntry(title):
     for item in screenEntries:
         if item.getTitle() == title:
@@ -37,31 +50,46 @@ def getEntry(title):
     return None
 
 
+'''
+ Ähnlich wie getEntry(): Gibt einen Wahrheitswert zurück,
+ jetzt mit der Bedingung, dass Parameter nur im Fenster Titel
+ enthalten sein soll
+'''
 def getEntryByTitleContains(title):
     for item in screenEntries:
         if title in item.getTitle():
             return item
     return None
 
+'''
+ Führt mit pyautogui einen Klick an den übergebenen Koordinaten aus
+'''
+def click(x, y):
+    pyautogui.click(x, y)
 
-def relClickFullHD(x, y, screenEntry):
-    print(x / 1920)
-    print(y / 1080)
-    print(screenEntry.getWidth())
-    print(screenEntry.getHeight())
-    print(screenEntry.getX())
-    print(screenEntry.getY())
-    relClick(x / 1920, y / 1080, screenEntry)
-
-
+'''
+ Führt einen Klick an dem Produkt aus dem übergebenem X/Y und
+ der Breite/Höhe des übergebenen Referenz Fensters aus
+'''
 def relClick(relX, relY, screenEntry):
     x = screenEntry.getX() + screenEntry.getWidth() * relX
     y = screenEntry.getY() + screenEntry.getHeight() * relY
-    print(x)
-    print(y)
     pyautogui.click(x, y)
 
 
+'''
+ Führt relClick() aus, nur dass ganze Zahlen als x und y
+ übergeben werden und die relativen Koordinaten erst noch
+ mit FullHD berechnet werden
+'''
+def relClickFullHD(x, y, screenEntry):
+    relClick(x / 1920, y / 1080, screenEntry)
+
+
+'''
+ Klasse zum Speichern aller wichtigen Attribute
+ für ein Fenster
+'''
 class ScreenEntry:
 
     def __init__(self, txt, x, y, w, h):
