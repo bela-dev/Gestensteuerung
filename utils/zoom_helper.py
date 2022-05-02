@@ -2,30 +2,22 @@ import keyboard
 import pyautogui
 import utils.screen_helper as ScreenHelper
 
-time = 0
-
-muted = False
-handRaised = False
-
-thumbUp = False
-heart = False
-
+# Pyautogui konfigurieren
 pyautogui.PAUSE = 1
 pyautogui.FAILSAFE = False
 
 autoClickRunning = False
 
 def click(x, y):
-    if ScreenHelper.getEntryByTitleContains("Zoom Meeting") == None:
+    if ScreenHelper.containsEntryByTitleContains("Zoom Meeting"):
         print("Zoom isn't open!")
     else:
-        global time
         ScreenHelper.relClick(x, y, ScreenHelper.getEntryByTitleContains("Zoom Meeting"))
-        time += 1
 
 '''
- Mute
+ Mute ausführen
 '''
+muted = False
 def setMuteState(value: bool):
     global muted
     if muted != value:
@@ -39,7 +31,7 @@ def toggleMute():
 '''
  Hand Raise
 '''
-
+handRaised = False
 def setHandRaisedState(value: bool):
     global handRaised
     if handRaised != value:
@@ -53,7 +45,7 @@ def toggleHandRaised():
 '''
  Thumb Up
 '''
-
+thumbUp = False
 def setThumbUpState(value: bool):
     global thumbUp
     if thumbUp != value:
@@ -75,15 +67,14 @@ def toggleThumbUp():
 '''
 Heart
 '''
+heart = False
 def setHeartState(value: bool):
     global heart
     if heart != value:
         toggleHeart()
 
 def toggleHeart():
-    global time
-    global heart
-    global autoClickRunning
+    global time, heart, autoClickRunning
     if not autoClickRunning:
         time = 0
         autoClickRunning = True

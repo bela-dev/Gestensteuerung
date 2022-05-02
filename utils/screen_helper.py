@@ -38,6 +38,16 @@ def containsEntry(title):
             return True
     return False
 
+'''
+ Gibt einem einen Wahrheitswert zurück, je nachdem, ob ein Eintrag
+ mit einem Titel, der den Parameter enthält existiert
+'''
+def containsEntryByTitleContains(title):
+    for item in screenEntries:
+        if title in item.getTitle():
+            return True
+    return False
+
 
 '''
  Gibt das gespeicherte Objekt der Klasse ScreenEntry, falls vorhanden,
