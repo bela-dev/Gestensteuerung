@@ -17,7 +17,7 @@ from gestures.impl.mute import MuteGesture
 from gestures.impl.thumb_up import ThumbUpGesture
 from gestures.impl.heart import HeartGesture
 from gestures.impl.ok_hand import OkHandGesture
-from gestures.impl.alttab import AltTabGesture
+from gestures.impl.alt_tab import AltTabGesture
 from gestures.impl.volume_change import VolumeChangeGesture
 
 '''

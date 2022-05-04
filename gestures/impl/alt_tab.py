@@ -28,7 +28,7 @@ class AltTabGesture(Gesture):
             for v in positions:
                 if v:
                     # Distanz zwischen WRIST und INDEX_FINGER_MC bekommen als anhalts Punkt für die Größe
-                    comparisonDistance = v.get2DDistance(HandPoint.WRIST, HandPoint.INDEX_FINGER_MCP)
+                    comparisonDistance = v.getComparisonDistance()
                     if i < 13:
                         if not v.getAVGDistance() < 0.07*comparisonDistance*10:
                             valid = False

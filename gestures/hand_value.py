@@ -44,6 +44,9 @@ class HandValue:
                 return False
         return True
 
+    '''
+     Gibt die Distanz zwischen zwei HandPoints zurück
+    '''
     def get2DDistance(self, point1, point2):
         dx = abs(self.getPosition(point1).x - self.getPosition(point2).x)
         dy = abs(self.getPosition(point1).y - self.getPosition(point2).y)
@@ -62,6 +65,9 @@ class HandValue:
                 sum += abs(self.getPosition(v1).x - self.getPosition(v2).x)
                 sum += abs(self.getPosition(v1).y - self.getPosition(v2).y)
         return sum / (21*21)
+
+    def getComparisonDistance(self):
+        return self.get2DDistance(HandPoint.WRIST, HandPoint.INDEX_FINGER_MCP)
 
 class Hand(Enum):
     LEFT = 0

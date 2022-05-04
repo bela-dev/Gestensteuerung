@@ -15,24 +15,31 @@ class MuteGesture(Gesture):
             return False
 
         # check if movement goes from left to right
+        comparisonDistance = right.getComparisonDistance()*100/15
+        # check movement to right
+        valid = True
         for i in range(1, 7):
-            #print(self.getRightPosition(i).getMidOfHand().x, ' ', self.getRightPosition(i-1).getMidOfHand().x)
-            if not self.getRightPosition(i).getMidOfHand().x >= self.getRightPosition(i-1).getMidOfHand().x+0.01:
-                return False
+            if not self.getRightPosition(i).getMidOfHand().x >= self.getRightPosition(i-1).getMidOfHand().x+0.01*comparisonDistance:
+                valid = False
+        if valid and doValid:
+            self.onValid(True)
+            return True
 
-        # check if movement goes wide enough
-        #if not self.getRightPosition(1).getMidOfHand().x < self.getRightPosition(7).getMidOfHand().x - 0.4:
-         #   return False
+        # check movement to left
+        valid = True
+        for i in range(1, 7):
+            if not self.getRightPosition(i).getMidOfHand().x <= self.getRightPosition(
+                    i - 1).getMidOfHand().x - 0.01 * comparisonDistance:
+                valid = False
+        if valid and doValid:
+            self.onValid(False)
+            return True
 
-        # execute valid script
-        if doValid:
-            self.onValid()
-        return True
+        return False
 
     def onInvalid(self):
         return
 
-    def onValid(self):
-        ShortkeyHelper.toggleMute()
+    def onValid(self, muteState: bool):
+        ShortkeyHelper.setMuteState(muteState)
         self.initLastPositions(self.maxLastPositions)
-        print("toggle mute")
