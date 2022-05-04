@@ -26,8 +26,10 @@ class HeartGesture(Gesture):
         avg_x /= 8
         avg_y /= 8
 
-        min_diff = 0.05
-        min_range = 0.1
+        comparisonDistance = lef.getComparisonDistance()*10
+
+        min_diff = 0.05*comparisonDistance
+        min_range = 0.1*comparisonDistance
 
         for i in [8, 12, 16, 20]:
             if abs(lef.getPosition(getHandPointByIndex(i)).x-avg_x) > min_diff:
