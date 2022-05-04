@@ -64,7 +64,6 @@ ScreenHelper.relClickFullHD(300, 20, ScreenHelper.getEntryByTitleContains("pytho
 '''
  Anwenden von Google Media Pipe zum erkennen von Gesten
 '''
-
 with pyvirtualcam.Camera(width, height, fps, fmt=PixelFormat.BGR) as cam:
     with mp_hands.Hands(min_detection_confidence=0.8, min_tracking_confidence=0.5) as hands:
 

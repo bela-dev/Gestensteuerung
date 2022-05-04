@@ -10,9 +10,9 @@ autoClickRunning = False
 
 def click(x, y):
     if ScreenHelper.containsEntryByTitleContains("Zoom Meeting"):
-        print("Zoom isn't open!")
+        ScreenHelper.relClickFullHD(x, y, ScreenHelper.getEntryByTitleContains("Zoom Meeting"))
     else:
-        ScreenHelper.relClick(x, y, ScreenHelper.getEntryByTitleContains("Zoom Meeting"))
+        print("Zoom isn't open!")
 
 '''
  Mute ausführen
@@ -78,7 +78,7 @@ def toggleHeart():
     if not autoClickRunning:
         time = 0
         autoClickRunning = True
-        click(950/1450, 915/950)
-        #click(1210, 960)
+        click(1170, 1050)
+        click(1210, 960)
         heart = not heart
         autoClickRunning = False

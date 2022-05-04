@@ -43,10 +43,7 @@ def containsEntry(title):
  mit einem Titel, der den Parameter enthält existiert
 '''
 def containsEntryByTitleContains(title):
-    for item in screenEntries:
-        if title in item.getTitle():
-            return True
-    return False
+    return getEntryByTitleContains(title) != None
 
 
 '''
