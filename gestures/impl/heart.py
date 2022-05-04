@@ -26,31 +26,39 @@ class HeartGesture(Gesture):
         avg_x /= 8
         avg_y /= 8
 
-        comparisonDistance = lef.getComparisonDistance()*10
+        comparisonDistance = lef.getComparisonDistance()*5
 
         min_diff = 0.05*comparisonDistance
         min_range = 0.1*comparisonDistance
 
+        cnt = 0
+
         for i in [8, 12, 16, 20]:
+            #print(abs(lef.getPosition(getHandPointByIndex(i)).x-avg_x), ' ', abs(rig.getPosition(getHandPointByIndex(i)).x-avg_x), ' ', abs(lef.getPosition(getHandPointByIndex(i)).y-avg_y), ' ', abs(rig.getPosition(getHandPointByIndex(i)).y-avg_y))
             if abs(lef.getPosition(getHandPointByIndex(i)).x-avg_x) > min_diff:
-                return False
+                cnt += 1
             if abs(rig.getPosition(getHandPointByIndex(i)).x-avg_x) > min_diff:
-                return False
+                cnt += 1
             if abs(lef.getPosition(getHandPointByIndex(i)).y-avg_y) > min_diff:
-                return False
+                cnt += 1
             if abs(rig.getPosition(getHandPointByIndex(i)).y-avg_y) > min_diff:
-                return False
+                cnt += 1
 
         thumb_xl = lef.getPosition(HandPoint.THUMB_TIP).x
         thumb_xr = rig.getPosition(HandPoint.THUMB_TIP).x
         thumb_yl = lef.getPosition(HandPoint.THUMB_TIP).y
         thumb_yr = rig.getPosition(HandPoint.THUMB_TIP).y
 
+        if cnt > 2:
+            return False
+
+        #print(abs(thumb_xl-thumb_xr), ' ', abs(thumb_yl-thumb_yr))
         if abs(thumb_xl-thumb_xr) > min_diff:
             return False
         if abs(thumb_yl-thumb_yr) > min_diff:
             return False
 
+        #print((thumb_yl+thumb_yr)/2-avg_y)
         if (thumb_yl+thumb_yr)/2-avg_y < min_range:
             return False
 
