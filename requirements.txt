@@ -2,7 +2,7 @@ pynput~=1.7.5
 keyboard~=0.13.5
 PyAutoGUI~=0.9.53
 opencv-python~=4.5.3.56
-pywin32~=303
+pywin32
 pyvirtualcam~=0.8.0
 mediapipe~=0.8.9
 enum34~=1.1.10

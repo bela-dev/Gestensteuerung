@@ -43,3 +43,4 @@ class MuteGesture(Gesture):
     def onValid(self, muteState: bool):
         ShortkeyHelper.setMuteState(muteState)
         self.initLastPositions(self.maxLastPositions)
+        print("mute")
