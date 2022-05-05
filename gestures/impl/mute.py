@@ -35,6 +35,23 @@ class MuteGesture(Gesture):
             self.onValid(False)
             return True
 
+        comparisonDistance = left.getComparisonDistance()*100/15
+        valid = True
+        for i in range(1, 7):
+            if not self.getLeftPosition(i).getMidOfHand().x >= self.getLeftPosition(i-1).getMidOfHand().x+0.01*comparisonDistance:
+                valid = False
+        if valid and doValid:
+            self.onValid(True)
+            return True
+        valid = True
+        for i in range(1, 7):
+            if not self.getLeftPosition(i).getMidOfHand().x <= self.getLeftPosition(
+                    i - 1).getMidOfHand().x - 0.01 * comparisonDistance:
+                valid = False
+        if valid and doValid:
+            self.onValid(False)
+            return True
+
         return False
 
     def onInvalid(self):
