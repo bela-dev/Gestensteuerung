@@ -28,8 +28,10 @@ class ThumbUpGesture(Gesture):
 
         avg_y /= 21
 
-        max_range = 0.2
-        min_diff = 0.25
+        comparisonDistance = v.getComparisonDistance() * 5
+
+        max_range = 0.2 * comparisonDistance
+        min_diff = 0.25 * comparisonDistance
 
         if thumb_y+min_diff > avg_y or mx_x-mn_x > max_range:
             #self.onInvalid()
