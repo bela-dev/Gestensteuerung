@@ -1,6 +1,8 @@
 import keyboard
 import pyautogui
 import utils.screen_helper as ScreenHelper
+from gestures.position import Position2D
+import threading
 
 # Pyautogui konfigurieren
 pyautogui.PAUSE = 1
@@ -41,6 +43,38 @@ def toggleHandRaised():
     global handRaised
     keyboard.send("alt+y")
     handRaised = not handRaised
+
+'''
+ Click Actions
+ 
+'''
+
+actions = {
+    "heart": [Position2D(1230, 1000), Position2D(1120, 830)]
+}
+
+states = {
+    "heart": False
+}
+
+def setClickActionState(key, value: bool):
+    if not states.get(key) == value:
+        toggleClickAction(key)
+
+def toggleClickAction(key):
+    states[key] = not states[key]
+    for v in actions.get(key):
+        thread = ClickActionThread(v)
+        thread.start()
+
+
+class ClickActionThread(threading.Thread):
+    def __init__(self, pos):
+        threading.Thread.__init__(self)
+        self.pos = pos
+
+    def run(self):
+        click(self.pos.getX(), self.pos.getY())
 
 '''
  Thumb Up

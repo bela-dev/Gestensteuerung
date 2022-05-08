@@ -59,7 +59,6 @@ gestures = [MuteGesture(), RaiseHandGesture(), AltTabGesture(), ThumbUpGesture()
 activeGesture = None
 
 ScreenHelper.refresh()
-#ScreenHelper.relClickFullHD(300, 20, ScreenHelper.getEntryByTitleContains("pythonProject"))
 
 '''
  Anwenden von Google Media Pipe zum erkennen von Gesten
