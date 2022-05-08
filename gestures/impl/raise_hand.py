@@ -46,7 +46,7 @@ class RaiseHandGesture(Gesture):
         sigma_Y = math.sqrt(sigma_Y)
 
         comparisonDistance = positions[0].getComparisonDistance() * 5.6
-        print(sigma_X, ' ', sigma_Y)
+        #print(sigma_X, ' ', sigma_Y)
 
         minSum = 0.01
         minMueY = 0.4
