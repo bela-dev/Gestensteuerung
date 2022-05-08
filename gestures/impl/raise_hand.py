@@ -42,10 +42,12 @@ class RaiseHandGesture(Gesture):
         sumY = sumY / len(positions)
         sumY = math.sqrt(sumY)
 
-        minSum = 0.01
-        minMueY = 0.4
+        comparisonDistance = positions[0].getComparisonDistance() * 5.6
 
-        if sumX > minSum or sumY > minSum or mueY > minMueY or positions[0].getPosition(getHandPointByIndex(12)).y+0.1 > positions[0].getPosition(getHandPointByIndex(0)).y:
+        minSum = 0.01 * comparisonDistance
+        minMueY = 0.4 * comparisonDistance
+
+        if sumX > minSum or sumY > minSum or mueY > minMueY or positions[0].getPosition(getHandPointByIndex(12)).y+(0.1 * comparisonDistance) > positions[0].getPosition(getHandPointByIndex(0)).y:
             self.onInvalid()
             return False
         if doValid:
