@@ -17,7 +17,10 @@ class RaiseHandGesture(Gesture):
 
     def checkOneHand(self, positions, doValid):
         for v in positions:
-            if not v or not v.isOpen():
+            if not v:
+                return False
+            cD = v.getComparisonDistance() * 5.6
+            if not v.isOpen(cD):
                 return False
 
         mueX = 0
@@ -25,29 +28,30 @@ class RaiseHandGesture(Gesture):
             mueX += i.getMidOfHand().x
         mueX = mueX / len(positions)
 
-        sumX = 0
+        sigma_X = 0
         for i in positions:
-            sumX += (i.getMidOfHand().x - mueX) ** 2
-        sumX = sumX / len(positions)
-        sumX = math.sqrt(sumX)
+            sigma_X += (i.getMidOfHand().x - mueX) ** 2
+        sigma_X = sigma_X / len(positions)
+        sigma_X = math.sqrt(sigma_X)
 
         mueY = 0
         for i in positions:
             mueY += i.getMidOfHand().y
         mueY = mueY / len(positions)
 
-        sumY = 0
+        sigma_Y = 0
         for i in positions:
-            sumY += (i.getMidOfHand().y - mueY) ** 2
-        sumY = sumY / len(positions)
-        sumY = math.sqrt(sumY)
+            sigma_Y += (i.getMidOfHand().y - mueY) ** 2
+        sigma_Y = sigma_Y / len(positions)
+        sigma_Y = math.sqrt(sigma_Y)
 
         comparisonDistance = positions[0].getComparisonDistance() * 5.6
+        print(sigma_X, ' ', sigma_Y)
 
-        minSum = 0.01 * comparisonDistance
-        minMueY = 0.4 * comparisonDistance
+        minSum = 0.01
+        minMueY = 0.4
 
-        if sumX > minSum or sumY > minSum or mueY > minMueY or positions[0].getPosition(getHandPointByIndex(12)).y+(0.1 * comparisonDistance) > positions[0].getPosition(getHandPointByIndex(0)).y:
+        if sigma_X > minSum or sigma_Y > minSum or mueY > minMueY or positions[0].getPosition(getHandPointByIndex(12)).y+(0.1 * comparisonDistance) > positions[0].getPosition(getHandPointByIndex(0)).y:
             self.onInvalid()
             return False
         if doValid:
