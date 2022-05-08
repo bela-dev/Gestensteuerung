@@ -15,8 +15,8 @@ class OkHandGesture(Gesture):
         self.addLastPosition(left, right)
         return self.checkOneHand(self.lastRightHandPositions, doValid) or self.checkOneHand(self.lastLeftHandPositions, doValid)
 
-    def is_equal(self, x1, y1, x2, y2, cD):
-        TRESHOLD = 0.05 * cD
+    def is_equal(self, x1, y1, x2, y2):
+        TRESHOLD = 0.05
         dx = x1-x2
         dy = y1-y2
         dist = math.sqrt(dx*dx+dy*dy)
@@ -28,12 +28,12 @@ class OkHandGesture(Gesture):
 
     def isOkHand(self, v):
 
-        comparisonDistance = v.getComparisonDistance() * 5.3
+        comparisonDistance = v.getComparisonDistance() * 3.3
 
         a = v.getPosition(HandPoint.THUMB_TIP)
         b = v.getPosition(HandPoint.INDEX_FINGER_TIP)
 
-        if not self.is_equal(a.x, a.y, b.x, b.y, comparisonDistance):
+        if not self.is_equal(a.x, a.y, b.x, b.y):
             return False
 
         # 6 unter 12, 16, 20
