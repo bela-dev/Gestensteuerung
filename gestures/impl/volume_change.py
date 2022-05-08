@@ -20,7 +20,9 @@ class VolumeChangeGesture(Gesture):
     def volumeChangeReady(self, v):
 
         wrist_y = v.getPosition(HandPoint.WRIST).y
-        possible_difference = 0.15
+
+        cD = v.getComparisonDistance() * 5.6
+        possible_difference = 0.15 * cD
 
         for i in range(20):
             cur_y = v.getPosition(getHandPointByIndex(i)).y
@@ -37,8 +39,9 @@ class VolumeChangeGesture(Gesture):
                 self.onInvalid()
                 return False
 
+        cD = positions[0].getComparisonDistance() * 5.6
         ExecHelper.changeVolume((positions[0].getPosition(HandPoint.WRIST).y
-                                 - positions[1].getPosition(HandPoint.WRIST).y)*10)
+                                 - positions[1].getPosition(HandPoint.WRIST).y)*10 / cD)
 
         self.onValid()
         return True
