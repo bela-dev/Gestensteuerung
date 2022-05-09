@@ -77,8 +77,8 @@ class HeartGesture(Gesture):
 
     def onValid(self):
         self.initLastPositions(self.maxLastPositions)
-        ShortkeyHelper.setClickActionState("heart", True)
+        ShortkeyHelper.toggleClickAction("heart")
         print("heart")
 
     def onInvalid(self):
-        ShortkeyHelper.setHeartState(False)
+        pass
