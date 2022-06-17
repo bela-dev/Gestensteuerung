@@ -1,6 +1,11 @@
 '''
  Gestensteuerung für QAware 8Gate
 '''
+
+import loading_frame as LoadingFrame
+print("start")
+LoadingFrame.start()
+
 import cv2
 import pyvirtualcam
 from pyvirtualcam import PixelFormat
@@ -25,6 +30,7 @@ from gestures.impl.volume_change import VolumeChangeGesture
 '''
 
 # Virtuelle Kamera initialisieren
+print("main")
 vc = cv2.VideoCapture(0)
 
 if not vc.isOpened():
@@ -43,13 +49,15 @@ width = int(vc.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(vc.get(cv2.CAP_PROP_FRAME_HEIGHT))
 fps = vc.get(cv2.CAP_PROP_FPS)
 
+print(fps)
+
 '''
 Google Media Pipe einrichten
 '''
 mp_drawing = mp.solutions.drawing_utils
 mp_hands = mp.solutions.hands
 
-#test
+LoadingFrame.end()
 
 '''
 Gestenliste erstellen
@@ -59,6 +67,7 @@ gestures = [MuteGesture(), RaiseHandGesture(), AltTabGesture(), ThumbUpGesture()
 activeGesture = None
 
 ScreenHelper.refresh()
+
 
 '''
  Anwenden von Google Media Pipe zum erkennen von Gesten
